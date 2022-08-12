@@ -1,5 +1,7 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ecomflutter3sellers/components/custom_text_field.dart';
+import 'package:ecomflutter3sellers/components/loading_dialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -8,8 +10,6 @@ import 'package:firebase_storage/firebase_storage.dart' as fStorage;
 
 import '../global/global.dart';
 import '../splashScreen/my_splash_screen.dart';
-import '../widgets/custom_text_field.dart';
-import '../widgets/loading_dialog.dart';
 
 class SignUpPage extends StatefulWidget {
   @override

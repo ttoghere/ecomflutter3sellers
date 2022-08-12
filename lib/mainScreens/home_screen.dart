@@ -1,7 +1,5 @@
+import 'package:ecomflutter3sellers/components/my_drawer.dart';
 import 'package:flutter/material.dart';
-
-import '../widgets/my_drawer.dart';
-
 
 class HomeScreen extends StatefulWidget
 {
