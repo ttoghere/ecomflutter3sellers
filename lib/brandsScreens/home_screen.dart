@@ -1,12 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecomflutter3sellers/brandsScreens/components/brands_ui_design_widget.dart';
-import 'package:ecomflutter3sellers/brandsScreens/components/text_delegate_header.dart';
 import 'package:ecomflutter3sellers/brandsScreens/upload_brands_screen.dart';
 import 'package:ecomflutter3sellers/components/my_drawer.dart';
 import 'package:ecomflutter3sellers/global/global.dart';
 import 'package:ecomflutter3sellers/models/brands.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class HomeScreen extends StatefulWidget {
   static const routeName = "/brandshomescreen";
@@ -46,11 +44,6 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: SingleChildScrollView(
         child:
-
-            //1. write query
-            //2  model
-            //3. ui design widget
-
             Column(
           children: [
             Container(

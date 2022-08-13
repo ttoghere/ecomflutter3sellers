@@ -1,4 +1,5 @@
 import 'package:ecomflutter3sellers/components/my_drawer.dart';
+import 'package:ecomflutter3sellers/global/global.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget
@@ -17,19 +18,7 @@ class _HomeScreenState extends State<HomeScreen>
       drawer: MyDrawer(),
       appBar: AppBar(
         flexibleSpace: Container(
-          decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                colors:
-                [
-                  Colors.pinkAccent,
-                  Colors.purpleAccent,
-                ],
-                begin: FractionalOffset(0.0, 0.0),
-                end: FractionalOffset(1.0, 0.0),
-                stops: [0.0, 1.0],
-                tileMode: TileMode.clamp,
-              )
-          ),
+          decoration: boxDecoration
         ),
         title: const Text(
           "iShop",
