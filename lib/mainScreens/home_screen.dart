@@ -21,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen>
           decoration: boxDecoration
         ),
         title: const Text(
-          "iShop",
+          "Ecom",
           style: TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.bold,

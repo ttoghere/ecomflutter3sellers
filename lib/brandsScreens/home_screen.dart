@@ -6,6 +6,8 @@ import 'package:ecomflutter3sellers/global/global.dart';
 import 'package:ecomflutter3sellers/models/brands.dart';
 import 'package:flutter/material.dart';
 
+import 'components/text_delegate_header.dart';
+
 class HomeScreen extends StatefulWidget {
   static const routeName = "/brandshomescreen";
   @override
@@ -42,63 +44,45 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        child:
-            Column(
-          children: [
-            Container(
-              width: double.infinity,
-              height: 50,
-              decoration: boxDecoration,
-              child: Center(
-                child: Text(
-                  "My Brands",
-                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Colors.white,fontSize: 22),
-                  textAlign: TextAlign.center,
+      body: SizedBox(
+        height: MediaQuery.of(context).size.height - 100,
+        child: StreamBuilder(
+          stream: FirebaseFirestore.instance
+              .collection("sellers")
+              .doc(sharedPreferences!.getString("uid"))
+              .collection("brands")
+              .orderBy("publishedDate", descending: true)
+              .snapshots(),
+          builder: (context, AsyncSnapshot dataSnapshot) {
+            if (dataSnapshot.hasData) //if brands exists
+            {
+              //display brands
+              return GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 1),
+                itemBuilder: (context, index) {
+                  Brands brandsModel = Brands.fromJson(
+                    dataSnapshot.data.docs[index].data()
+                        as Map<String, dynamic>,
+                  );
+                  return BrandsUiDesignWidget(
+                    model: brandsModel,
+                    context: context,
+                  );
+                },
+                itemCount: dataSnapshot.data.docs.length,
+              );
+            } else //if brands NOT exists
+            {
+              return const SliverToBoxAdapter(
+                child: Center(
+                  child: Text(
+                    "No brands exists",
+                  ),
                 ),
-              ),
-            ),
-            StreamBuilder(
-              stream: FirebaseFirestore.instance
-                  .collection("sellers")
-                  .doc(sharedPreferences!.getString("uid"))
-                  .collection("brands")
-                  .orderBy("publishedDate", descending: true)
-                  .snapshots(),
-              builder: (context, AsyncSnapshot dataSnapshot) {
-                if (dataSnapshot.hasData) //if brands exists
-                {
-                  //display brands
-                  return SizedBox(
-                    height: MediaQuery.of(context).size.height - 150,
-                    width: double.infinity,
-                    child: ListView.builder(
-                      itemBuilder: (context, index) {
-                        Brands brandsModel = Brands.fromJson(
-                          dataSnapshot.data.docs[index].data()
-                              as Map<String, dynamic>,
-                        );
-                        return BrandsUiDesignWidget(
-                          model: brandsModel,
-                          context: context,
-                        );
-                      },
-                      itemCount: dataSnapshot.data.docs.length,
-                    ),
-                  );
-                } else //if brands NOT exists
-                {
-                  return const SliverToBoxAdapter(
-                    child: Center(
-                      child: Text(
-                        "No brands exists",
-                      ),
-                    ),
-                  );
-                }
-              },
-            ),
-          ],
+              );
+            }
+          },
         ),
       ),
     );
