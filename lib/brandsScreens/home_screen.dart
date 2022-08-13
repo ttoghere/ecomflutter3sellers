@@ -58,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
             {
               //display brands
               return GridView.builder(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 1),
                 itemBuilder: (context, index) {
                   Brands brandsModel = Brands.fromJson(
@@ -74,11 +74,9 @@ class _HomeScreenState extends State<HomeScreen> {
               );
             } else //if brands NOT exists
             {
-              return const SliverToBoxAdapter(
-                child: Center(
-                  child: Text(
-                    "No brands exists",
-                  ),
+              return const Center(
+                child: Text(
+                  "No brands exists",
                 ),
               );
             }

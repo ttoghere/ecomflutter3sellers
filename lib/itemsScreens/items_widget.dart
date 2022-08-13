@@ -1,32 +1,32 @@
+import 'package:ecomflutter3sellers/itemsScreens/item_details.dart';
+import 'package:ecomflutter3sellers/itemsScreens/items_screen.dart';
 import 'package:ecomflutter3sellers/models/items.dart';
 import 'package:flutter/material.dart';
 
-
-class ItemsWidget extends StatefulWidget
-{
+class ItemsWidget extends StatefulWidget {
   Items? model;
   BuildContext? context;
 
-  ItemsWidget({this.model, this.context,});
+  ItemsWidget({
+    this.model,
+    this.context,
+  });
 
   @override
   State<ItemsWidget> createState() => _ItemsWidgetState();
 }
 
-
-
-
-class _ItemsWidgetState extends State<ItemsWidget>
-{
+class _ItemsWidgetState extends State<ItemsWidget> {
   @override
-  Widget build(BuildContext context)
-  {
+  Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: ()
-      {
-        /*Navigator.push(context, MaterialPageRoute(builder: (c)=> ItemsScreen(
-          model: widget.model,
-        )));*/
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (c) => ItemDetails(
+                      model: widget.model,
+                    )));
       },
       child: Card(
         elevation: 10,
@@ -38,9 +38,9 @@ class _ItemsWidgetState extends State<ItemsWidget>
             width: MediaQuery.of(context).size.width,
             child: Column(
               children: [
-
-                const SizedBox(height: 2,),
-
+                const SizedBox(
+                  height: 2,
+                ),
                 Text(
                   widget.model!.itemTitle.toString(),
                   style: const TextStyle(
@@ -50,17 +50,17 @@ class _ItemsWidgetState extends State<ItemsWidget>
                     letterSpacing: 3,
                   ),
                 ),
-
-                const SizedBox(height: 2,),
-
+                const SizedBox(
+                  height: 2,
+                ),
                 Image.network(
                   widget.model!.thumbnailUrl.toString(),
                   height: 220,
                   fit: BoxFit.cover,
                 ),
-
-                const SizedBox(height: 4,),
-
+                const SizedBox(
+                  height: 4,
+                ),
                 Text(
                   widget.model!.itemInfo.toString(),
                   style: const TextStyle(
@@ -68,7 +68,6 @@ class _ItemsWidgetState extends State<ItemsWidget>
                     fontSize: 14,
                   ),
                 ),
-
               ],
             ),
           ),

@@ -95,11 +95,9 @@ class _ItemsScreenState extends State<ItemsScreen> {
               );
             } else //if brands NOT exists
             {
-              return const SliverToBoxAdapter(
-                child: Center(
-                  child: Text(
-                    "No items exists",
-                  ),
+              return const Center(
+                child: Text(
+                  "No items exists",
                 ),
               );
             }
